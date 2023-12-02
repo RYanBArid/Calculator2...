@@ -103,7 +103,7 @@
         <button onclick="appendFunction('cos')">cos</button>
         <button onclick="appendFunction('sin')">sin</button>
         <button onclick="appendFunction('tan')">tan</button>
-        <button id="show-formulas" onclick="toggleFormulaSection()">Formulas</button>
+        <button id="show-formulas" onclick="window.location.href='formulas.html'">Formulas</button>
     </div>
 
     <div id="formula-section">
@@ -140,4 +140,6 @@
             try {
                 const displayValue = document.getElementById('display').value;
                 // Replace "Math" with an empty string
-                const cleanedValue = displayValue.replace(/Math/g,
+                const cleanedValue = displayValue.replace(/Math/g, '');
+                const result = eval(cleanedValue);
+                document.getElementById('display
