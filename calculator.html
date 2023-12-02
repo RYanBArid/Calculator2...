@@ -64,17 +64,6 @@
             color: #fff; /* White text for better visibility */
             display: none; /* Initially hide the formula section */
         }
-        #show-formulas {
-            width: calc(100% - 20px); /* Adjusted width for padding */
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #333; /* Dark gray button background color similar to Apple's calculator */
-            border: 1px solid #ccc; /* Border color similar to Apple's calculator */
-            border-radius: 8px; /* Rounded corners */
-            cursor: pointer;
-            color: #fff; /* White text for better visibility */
-        }
     </style>
 </head>
 <body>
@@ -103,7 +92,6 @@
         <button onclick="appendFunction('cos')">cos</button>
         <button onclick="appendFunction('sin')">sin</button>
         <button onclick="appendFunction('tan')">tan</button>
-        <button id="show-formulas" onclick="window.location.href='formulas.html'">Formulas</button>
     </div>
 
     <div id="formula-section">
@@ -142,4 +130,16 @@
                 // Replace "Math" with an empty string
                 const cleanedValue = displayValue.replace(/Math/g, '');
                 const result = eval(cleanedValue);
-                document.getElementById('display
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+
+        function backspace() {
+            const currentValue = document.getElementById('display').value;
+            document.getElementById('display').value = currentValue.slice(0, -1);
+        }
+    </script>
+</body>
+</html>
