@@ -27,8 +27,8 @@
         }
         input {
             grid-column: span 4;
-            width: 100%;
-            margin-bottom: 10px;
+            width: calc(100% - 20px); /* Adjusted width for padding */
+            margin: 10px;
             padding: 10px;
             font-size: 16px;
             border: none;
@@ -55,12 +55,24 @@
             background-color: #777; /* Dark gray button background color when clicked */
         }
         #formula-section {
-            max-height: 0; /* Initially hide the formula section */
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            width: 90%; /* Adjusted width for mobile */
+            max-width: 400px; /* Set a maximum width for larger screens */
+            margin: 10px auto;
             text-align: left;
             padding: 10px;
             background-color: #222; /* Dark gray background color for the formula section */
+            color: #fff; /* White text for better visibility */
+            display: none; /* Initially hide the formula section */
+        }
+        #show-formulas {
+            width: calc(100% - 20px); /* Adjusted width for padding */
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #333; /* Dark gray button background color similar to Apple's calculator */
+            border: 1px solid #ccc; /* Border color similar to Apple's calculator */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer;
             color: #fff; /* White text for better visibility */
         }
     </style>
@@ -91,10 +103,41 @@
         <button onclick="appendFunction('cos')">cos</button>
         <button onclick="appendFunction('sin')">sin</button>
         <button onclick="appendFunction('tan')">tan</button>
-        <button onclick="toggleFormulaSection()">Formulas</button>
+        <button id="show-formulas" onclick="toggleFormulaSection()">Formulas</button>
     </div>
 
     <div id="formula-section">
         <h2>Formulas</h2>
         <p><strong>Physics Formulas:</strong></p>
-        <p>1. Kinematic Equation: \(s = ut +
+        <p>1. Kinematic Equation: \(s = ut + \frac{1}{2}at^2\)</p>
+        <p>2. Newton's Second Law: \(F = ma\)</p>
+        <p>3. Work-Energy Theorem: \(W = \Delta KE\)</p>
+
+        <p><strong>Trigonometry Formulas:</strong></p>
+        <p>1. Sine Law: \(\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}\)</p>
+        <p>2. Cosine Law: \(c^2 = a^2 + b^2 - 2ab\cos C\)</p>
+        <p>3. Pythagorean Theorem: \(c^2 = a^2 + b^2\)</p>
+    </div>
+
+    <script>
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function appendSymbol(symbol) {
+            document.getElementById('display').value += symbol;
+        }
+
+        function appendDigit(digit) {
+            document.getElementById('display').value += digit;
+        }
+
+        function appendFunction(func) {
+            document.getElementById('display').value += func + '(';
+        }
+
+        function calculate() {
+            try {
+                const displayValue = document.getElementById('display').value;
+                // Replace "Math" with an empty string
+                const cleanedValue = displayValue.replace(/Math/g,
